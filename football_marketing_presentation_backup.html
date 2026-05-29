@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Football Transfer Pricing as Marketing Analytics</title>
+  <style>
+    :root {
+      --bg: #000000;
+      --panel: #07110e;
+      --panel-2: #0c1714;
+      --line: rgba(255,255,255,.12);
+      --text: #ffffff;
+      --muted: #cbd5e1;
+      --green: #24d18f;
+      --grass: #0d7f4b;
+      --cyan: #22d3ee;
+      --gold: #f4c95d;
+      --pink: #ff5aa5;
+      --red: #ff6b6b;
+      --shadow: 0 28px 90px rgba(0,0,0,.55);
+      --radius: 18px;
+      --max: 1220px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: #020202;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.58;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background: none;
+      border-left: 1px solid rgba(255,255,255,.04);
+      border-right: 1px solid rgba(255,255,255,.04);
+    }
+
+    a { color: var(--cyan); text-decoration: none; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 28px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+
+    .ball {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 4px rgba(255,255,255,.08), 0 0 18px rgba(255,255,255,.18);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 6px 9px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      padding: 76px 28px 54px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -12vw;
+      bottom: -28vh;
+      width: 58vw;
+      height: 58vw;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: inset 0 0 0 30px rgba(36,209,143,.05), 0 0 120px rgba(34,211,238,.12);
+      opacity: .75;
+    }
+
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid rgba(36,209,143,.32);
+      border-radius: 999px;
+      background: rgba(36,209,143,.08);
+      color: #d9fff0;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    h1 {
+      margin: 24px 0 18px;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .96;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+    }
+
+    .hero-question {
+      margin-top: 34px;
+      padding-left: 20px;
+      border-left: 4px solid var(--green);
+      font-size: clamp(22px, 2.6vw, 34px);
+      line-height: 1.18;
+      font-weight: 800;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      background: rgba(10, 12, 14, .78);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(0,0,0,.28);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--gold);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px 28px;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: .62fr 1fr;
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4.4vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+
+    .section-lede {
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .framework {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .framework-card, .chart-card, .takeaway-card, .appendix-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .framework-card {
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .framework-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: rgba(36,209,143,.72);
+    }
+
+    .framework-card h3 {
+      margin: 4px 0 10px;
+      font-size: 20px;
+    }
+
+    .framework-card p { color: var(--muted); margin: 0; }
+
+    .story-panel {
+      border: 1px solid rgba(36,209,143,.24);
+      background: rgba(8, 12, 12, .72);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin: 28px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .story-panel h3 {
+      margin: 0 0 12px;
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.18;
+    }
+
+    .story-panel p {
+      color: var(--muted);
+      margin: 10px 0 0;
+      font-size: 16px;
+    }
+
+    .big-insight {
+      margin: 54px 0 22px;
+      padding: 34px;
+      border-left: 5px solid var(--gold);
+      background: rgba(244,201,93,.07);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: clamp(24px, 3.2vw, 42px);
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 26px 0;
+    }
+
+    .formula-card {
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.045);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .formula {
+      margin: 8px 0 12px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #000;
+      border: 1px solid rgba(36,209,143,.24);
+      color: #eafff5;
+      font-family: "SF Mono", "Cascadia Code", ui-monospace, Menlo, Consolas, monospace;
+      font-size: clamp(18px, 2.2vw, 26px);
+      text-align: center;
+      box-shadow: inset 0 0 22px rgba(36,209,143,.08);
+    }
+
+    .formula-card h3 { margin: 0; }
+    .formula-card p { color: var(--muted); margin: 0; }
+
+    .chart-card {
+      margin: 26px 0;
+      overflow: hidden;
+      background: #070909;
+    }
+
+    .chart-top {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 18px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .chart-title-block h3 {
+      margin: 0;
+      font-size: clamp(22px, 2.5vw, 34px);
+      line-height: 1.12;
+    }
+
+    .chart-meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+      color: #eafff5;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .priority {
+      color: #00140d;
+      background: var(--green);
+      border-color: transparent;
+      font-weight: 800;
+    }
+
+    .chart-body {
+      display: grid;
+      grid-template-columns: 1.32fr .68fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .chart-media {
+      padding: 20px;
+      background: #030303;
+      display: grid;
+      align-items: center;
+    }
+
+    .chart-media img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: #000;
+    }
+
+    .chart-notes {
+      padding: 22px;
+      border-left: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+      display: grid;
+      gap: 16px;
+      align-content: center;
+    }
+
+    .note h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .chart-guide {
+      border: 1px solid rgba(34,211,238,.18);
+      background: rgba(34,211,238,.055);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .chart-guide h4 {
+      margin: 0 0 8px;
+      color: var(--cyan);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .chart-guide ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .chart-guide li + li { margin-top: 5px; }
+
+    .slide-line {
+      border-left: 4px solid var(--gold);
+      padding: 14px 16px;
+      background: rgba(244,201,93,.08);
+      border-radius: 0 12px 12px 0;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .takeaway-card {
+      padding: 24px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .takeaway-card h3 { margin: 0 0 12px; }
+    .takeaway-card p { color: var(--muted); margin: 0; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .flow-step {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .flow-step strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .flow-step span { color: var(--muted); font-size: 14px; }
+
+    .appendix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .appendix-card {
+      overflow: hidden;
+      background: rgba(255,255,255,.035);
+    }
+
+    .appendix-card img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .appendix-card div { padding: 16px; }
+    .appendix-card h3 { margin: 0 0 6px; font-size: 18px; }
+    .appendix-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 28px 52px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner, .section-header, .chart-body, .split, .framework, .flow, .appendix-grid {
+        grid-template-columns: 1fr;
+      }
+      .chart-notes { border-left: 0; border-top: 1px solid var(--line); }
+      .nav-inner { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+    }
+
+    @media print {
+      .nav { display: none; }
+      section, .hero { break-inside: avoid; min-height: auto; }
+      body { background: #000; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="ball"></span> Transfer Pricing × Marketing Analytics</div>
+      <div class="nav-links">
+        <a href="#framework">Framework</a>
+        <a href="#growth">Growth</a>
+        <a href="#brand">Brand</a>
+        <a href="#attention">Attention</a>
+        <a href="#segments">Segments</a>
+        <a href="#price">Price</a>
+        <a href="#appendix">Appendix</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Marketing Analytics Presentation Draft</div>
+        <h1>Football Transfer Pricing as Market Positioning</h1>
+        <p class="hero-subtitle">
+          足球转会费看似是体育新闻里的数字，但在营销分析中，它是最直接的价格信号：
+          俱乐部愿意为哪类球员付钱，就揭示了它真正偏好的市场定位。
+        </p>
+        <div class="hero-question">
+          俱乐部如何通过转会支出揭示市场偏好？
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="section-kicker">Core thesis</div>
+        <h3 style="margin:0;font-size:28px;line-height:1.15;">Transfer fee is the price of positioning under uncertainty.</h3>
+        <p style="color:var(--muted);margin-top:14px;">
+          本报告以 STP 为主线，把转会费看作 4P 中的 Price，并解释其背后的感知价值、品牌信号与注意力溢价。
+        </p>
+        <div class="metric-grid">
+          <div class="metric"><strong>18k+</strong><span>clean player observations</span></div>
+          <div class="metric"><strong>1.3k+</strong><span>paid transfer records</span></div>
+          <div class="metric"><strong>3</strong><span>positioning premiums</span></div>
+          <div class="metric"><strong>17</strong><span>exported chart assets</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <section id="framework">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Marketing Framework</div>
+        <h2>从转会费读出市场偏好</h2>
+      </div>
+      <p class="section-lede">
+        本报告不把所有理论强行塞进来，而是只选择能被当前数据和图表支撑的模型：
+        STP、4P Price、感知价值、品牌信号、注意力经济、hedonic pricing，以及轻量的差异化竞争直觉。
+      </p>
+    </div>
+    <div class="story-panel">
+      <h3>汇报逻辑：问题 → 证据 → 解释 → 洞察</h3>
+      <p>
+        我们先证明转会市场是一个“高溢价、明星驱动”的价格市场；再用 STP 拆成成长定位、品牌定位、注意力定位；
+        最后用多变量图和价格模型说明：转会费不是单纯为表现付款，而是为球员在市场中的定位付款。
+      </p>
+    </div>
+    <div class="framework">
+      <div class="framework-card">
+        <h3>STP</h3>
+        <p>先把球员市场细分，再看俱乐部更愿意瞄准哪些细分，最后解释哪些球员身份能够形成溢价定位。</p>
+      </div>
+      <div class="framework-card">
+        <h3>4P Price</h3>
+        <p>转会费不是账面数字，而是俱乐部真实支付意愿的外显结果，是本报告最核心的价格变量。</p>
+      </div>
+      <div class="framework-card">
+        <h3>Positioning Premiums</h3>
+        <p>成长溢价、品牌溢价、注意力溢价构成主线，竞争模型只作为辅助解释。</p>
+      </div>
+    </div>
+    <div class="flow">
+      <div class="flow-step"><strong>5C context</strong><span>clubs, players, leagues, fans and competitors create market conditions.</span></div>
+      <div class="flow-step"><strong>Segmentation</strong><span>age, role, league and attributes define meaningful player groups.</span></div>
+      <div class="flow-step"><strong>Positioning</strong><span>players are priced as growth assets, brand assets or attention assets.</span></div>
+      <div class="flow-step"><strong>Price</strong><span>transfer spending reveals what clubs actually prefer.</span></div>
+    </div>
+
+    <div class="formula-grid">
+      <div class="formula-card">
+        <h3>差异化定位直觉</h3>
+        <div class="formula">U = v - p - t|x - xᵢ|</div>
+        <p>
+          Hotelling 风格的直觉是：球员不是完全可替代的商品。即使能力相近，只要球员身份、联赛背景或进攻风格不同，
+          他们在俱乐部心中的“距离”也不同，因此估值会不同。
+        </p>
+      </div>
+      <div class="formula-card">
+        <h3>轻量竞价直觉</h3>
+        <div class="formula">max πᵢ = Vᵢ - pᵢ</div>
+        <p>
+          俱乐部会持续出价，直到“额外预期价值”接近“额外支付成本”。这不是正式拍卖模型，
+          只是帮助理解为什么高成长、高品牌、高注意力球员会被推高价格。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="data">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Data</div>
+        <h2>Structured football data becomes a marketing dataset</h2>
+      </div>
+      <p class="section-lede">
+        The database contains enough information to translate sporting attributes into marketing-facing signals:
+        lifecycle, product category, league brand and entertainment value.
+      </p>
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Data Understanding Dashboard</h3>
+          <div class="chart-meta"><span class="tag">Supporting</span><span class="tag">STP</span><span class="tag">Market research</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_01_data_understanding_dashboard.png" alt="Data Understanding Dashboard"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>The data has sufficient coverage across role, league, price and attribute variables to support segmentation and positioning analysis.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>Players can be treated as differentiated market assets rather than one homogeneous labor pool.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>左图看变量缺失率，判断分析可信度。</li><li>中图看不同角色的供给结构，这是 STP 细分基础。</li><li>右图看主要联赛覆盖度，说明品牌定位变量可用。</li><li>观众应关注：数据不是只有球员能力，也包含市场定位信息。</li></ul></div>
+          <div class="slide-line">The database is structured enough to support a genuine STP market analysis.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Price Skewness: Star-Driven Premium Market</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">4P Price</span><span class="tag">Premium market</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_02_price_skewness.png" alt="Price Skewness"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Transfer value is extremely right-skewed: a small elite group dominates the valuation range.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>The market behaves like a premium star economy where symbolic value, scarcity and attention concentrate price at the top.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>左图横轴是市场价值，纵轴是球员数量，少数高价球员拉长右尾。</li><li>右图横轴是 log(value+1)，把极端高价压缩后更容易看层级。</li><li>需要关注右尾：离群点不是噪声，而是明星经济的核心。</li><li>营销含义：头部球员像高端品牌资产，价格包含象征价值。</li></ul></div>
+          <div class="slide-line">Transfer pricing behaves like a premium star market, not a normal uniform labor market.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="growth">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Growth Positioning</div>
+        <h2>Young players are priced as future-growth assets</h2>
+      </div>
+      <p class="section-lede">
+        Clubs pay for more than present ability. Youth and potential create a growth narrative: future performance,
+        resale optionality and long-term brand-building value.
+      </p>
+    </div>
+    <div class="story-panel">
+      <h3>营销问题：年轻球员为什么能形成溢价？</h3>
+      <p>
+        在 STP 中，年轻高潜力球员不是普通“低龄球员”，而是被市场重新定位为 growth asset。
+        统计上我们看年龄、潜力和价格的关系；营销上我们看俱乐部是否愿意为未来叙事提前付款。
+      </p>
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Youth / Growth Positioning Map</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">STP Targeting</span><span class="tag">Growth Premium</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_03_youth_growth_positioning.png" alt="Youth Growth Positioning Map"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Young high-potential players occupy disproportionate high-value zones in the age-fee space.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>The market segments these players as growth assets rather than only current-performance players.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>横轴是年龄，纵轴是市场价值，越高代表估值越高。</li><li>气泡越大代表 potential 越高，颜色越亮代表成长分数越高。</li><li>黄色趋势线显示不同年龄的典型价格水平。</li><li>右上或左上离群点通常是顶级明星或超级潜力股。</li><li>观众应关注左上区域：年轻、高潜力、高价格同时出现。</li></ul></div>
+          <div class="slide-line">The market prices future narratives, not just current performance.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Growth Positioning by Age Segment</h3>
+          <div class="chart-meta"><span class="tag">Supporting</span><span class="tag">Product lifecycle</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_13_age_group_log_fee_violin.png" alt="Growth Positioning by Age Segment"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Age lifecycle segments show different price distributions and different upside ceilings.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>Youth is not just an age variable; it is a lifecycle positioning signal that changes how clubs value future upside.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>横轴是年龄段，纵轴是 log 市场价值。</li><li>小提琴越宽，表示该价格区间球员越多。</li><li>箱线图显示中位数和主要分布范围。</li><li>高位长尾说明该年龄段中存在高价明星或高潜力资产。</li><li>观众应比较不同生命周期阶段的价格上限。</li></ul></div>
+          <div class="slide-line">Age segments behave like product lifecycle stages in the player market.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="brand">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Brand Positioning</div>
+        <h2>League identity functions as a brand signal</h2>
+      </div>
+      <p class="section-lede">
+        League context is not neutral. It works like a brand label that signals quality, reduces perceived risk and
+        gives clubs confidence when paying transfer premiums.
+      </p>
+    </div>
+    <div class="story-panel">
+      <h3>营销问题：联赛为什么像品牌？</h3>
+      <p>
+        品牌资产理论认为，品牌能降低消费者的不确定性并提高支付意愿。转会市场中，联赛身份就像球员的来源品牌：
+        Premier League、La Liga 等不仅代表竞技环境，也代表曝光、质量背书和未来流动性。
+      </p>
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>League / Brand Positioning: Median Price Ladder</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">Brand equity</span><span class="tag">Signaling</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_04_league_brand_ladder.png" alt="League Brand Ladder"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Top leagues form a visible market-value ladder, with stronger leagues generally associated with higher player valuation.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>League identity acts like a brand label: it signals quality, visibility and resale confidence.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>纵轴是联赛，横轴是球员中位数市场价值。</li><li>条形越长，说明该联赛球员的典型估值越高。</li><li>颜色区分顶级联赛和其他联赛，强调品牌层级。</li><li>观众应关注价格阶梯，而不是单一联赛排名。</li><li>营销含义：联赛身份为球员增加或削弱品牌背书。</li></ul></div>
+          <div class="slide-line">League identity works like brand equity in player valuation.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Brand Positioning: League × Role Price Surface</h3>
+          <div class="chart-meta"><span class="tag">Supporting</span><span class="tag">Brand × segment</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_14_league_role_fee_heatmap.png" alt="League role fee heatmap"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Median valuation differs across both league brands and player role categories.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>Brand premium is not uniform. It interacts with the player's product category and the role the player performs.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>纵轴是联赛，横轴是角色类别。</li><li>颜色越亮代表该联赛×角色组合的中位数价值越高。</li><li>每个格子的数字是百万欧元级别的中位数估值。</li><li>观众应关注：品牌溢价并非平均作用于所有位置。</li><li>这张图解释“联赛品牌”和“球员产品类别”的交互。</li></ul></div>
+          <div class="slide-line">Brand context and product category jointly shape willingness to pay.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="attention">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Attention Positioning</div>
+        <h2>Entertainment creates visibility value</h2>
+      </div>
+      <p class="section-lede">
+        In modern football, players are both sporting assets and media assets. Attacking spectacle can create
+        promotion value through highlights, fan attention and commercial storytelling.
+      </p>
+    </div>
+    <div class="story-panel">
+      <h3>营销问题：为什么“好看”的球员更贵？</h3>
+      <p>
+        注意力经济强调，商业竞争的一部分是争夺用户注意力。速度、盘带、射门和明星声望会让球员更容易被传播、
+        记住和商业化。因此，进攻型娱乐资产的价格中可能包含 attention premium。
+      </p>
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Entertainment / Attention Positioning Map</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">Attention economy</span><span class="tag">Promotion value</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_05_attention_positioning.png" alt="Entertainment Attention Positioning Map"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Entertainment-oriented player profiles show a positive price gradient against log market value.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>Speed, dribbling, shooting and reputation turn players into attention-generating assets.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>横轴是 attention score，代表速度、盘带、射门、技术动作和声望的综合。</li><li>纵轴是 log 市场价值，越高说明估值越高。</li><li>点的颜色代表 overall，颜色越亮通常综合能力越强。</li><li>等高线表示球员密度，线越密说明该区域球员越集中。</li><li>趋势线向上说明注意力属性与价格存在正向关系。</li></ul></div>
+          <div class="slide-line">Entertainment-oriented profiles receive attention premiums.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="archetypes">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Player Archetypes</div>
+        <h2>The market prices identities, not isolated metrics</h2>
+      </div>
+      <p class="section-lede">
+        PCA and t-SNE are used as marketing visualization tools: they show how technical attributes become
+        recognizable product archetypes and consideration sets.
+      </p>
+    </div>
+    <div class="story-panel">
+      <h3>从属性到身份：多变量图不是为了炫技</h3>
+      <p>
+        PCA 和 t-SNE 的作用不是做复杂统计展示，而是模拟营销中的 perceptual map。
+        消费者不会逐项理解产品参数，俱乐部也不会只看单一能力值；它们看到的是“爆破型边锋”“组织型中场”“防守控制者”等整体身份。
+      </p>
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>PCA Archetype Map: Price Gradient</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">Perceptual map</span><span class="tag">Differentiation</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_06_pca_price_gradient.png" alt="PCA Price Gradient"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>High-value players concentrate in clearer latent archetype regions rather than scattering randomly.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>The chart functions like a perceptual map: clubs buy recognizable player archetypes, not isolated attributes.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>横轴 PC1 和纵轴 PC2 是由多项能力压缩出的两个综合方向。</li><li>每个点代表一名球员，位置相近说明属性组合相似。</li><li>颜色代表 log 市场价值，越亮说明估值越高。</li><li>被标注的离群点往往是高价明星，用来观察顶级原型。</li><li>观众应关注高价点是否集中在特定能力原型区域。</li></ul></div>
+          <div class="slide-line">Clubs buy recognizable player archetypes, not isolated attributes.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>t-SNE Identity Maps</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">Consideration sets</span><span class="tag">Hotelling-style differentiation</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_08_tsne_identity_maps.png" alt="t-SNE Identity Maps"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Player identities form neighborhoods, and price premiums appear in selected neighborhoods.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>Clubs compare players within identity-based consideration sets, not across the entire market at once.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>t-SNE 横纵轴没有直接业务单位，重点看点与点之间的相对距离。</li><li>距离越近，说明球员属性组合越相似，形成身份邻域。</li><li>四个子图分别用价格、年龄、联赛和角色上色。</li><li>亮色高价区域说明某些身份邻域获得市场溢价。</li><li>观众应关注：市场竞争发生在相似身份集合中，而不是所有球员混战。</li></ul></div>
+          <div class="slide-line">The market prices identity neighborhoods, not only individual metrics.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="segments">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Segmentation</div>
+        <h2>Player groups become market segments</h2>
+      </div>
+      <p class="section-lede">
+        Clustering is not used as a technical trick. It turns player profiles into market segments with different
+        value propositions and targeting logic.
+      </p>
+    </div>
+    <div class="story-panel">
+      <h3>营销问题：俱乐部到底在买哪类“产品包”？</h3>
+      <p>
+        聚类的意义不是给球员贴数学标签，而是把复杂球员市场变成可沟通的 segment portfolio。
+        对俱乐部来说，不同细分对应不同目标：即战力、成长性、创造力、阵容深度或品牌曝光。
+      </p>
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Segmentation: Market Segments and Segment DNA</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">STP segmentation</span><span class="tag">Targeting</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_10_segmentation_market_segments.png" alt="Segmentation Market Segments"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Player profiles can be grouped into market segments with different price levels and attribute DNA.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>Different segments sell different value propositions: growth, creativity, utility or control.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>左图横轴是不同市场细分，纵轴是中位数市场价值。</li><li>右图是 segment DNA：颜色表示该细分在某项特征上高于或低于平均。</li><li>格子里的数字是原始均值，颜色用于快速判断相对优势。</li><li>观众应关注：细分之间不是简单贵/便宜，而是价值主张不同。</li><li>高价细分通常代表更清晰、更稀缺或更可传播的球员产品。</li></ul></div>
+          <div class="slide-line">Player segments sell different value propositions to different club strategies.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Segment Archetype Radar</h3>
+          <div class="chart-meta"><span class="tag">Supporting</span><span class="tag">Segment positioning</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_15_segment_archetype_radar.png" alt="Segment Archetype Radar"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Segments differ across quality, potential, attention, growth and top-league share.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>Each segment is a different bundle of benefits, not merely a different price tier.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>每条线代表一个球员细分。</li><li>每个轴代表一种价值维度，如当前质量、潜力、注意力、成长和顶级联赛占比。</li><li>线越靠外，说明该细分在该维度越突出。</li><li>观众应把它看成“产品卖点雷达图”，不是精确排名。</li><li>营销重点：每个细分应该有一句清晰的 value proposition。</li></ul></div>
+          <div class="slide-line">Segmentation becomes useful when each segment has a clear value proposition.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="price">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Price Model</div>
+        <h2>Premiums translate positioning into willingness to pay</h2>
+      </div>
+      <p class="section-lede">
+        The pricing model is intentionally lightweight. Its purpose is not prediction accuracy; it decomposes
+        market price into interpretable marketing premiums.
+      </p>
+    </div>
+    <div class="story-panel">
+      <h3>营销问题：定位如何变成价格？</h3>
+      <p>
+        Hedonic pricing 的直觉是：一个产品的价格可以拆成多个属性价值。这里我们不追求复杂计量，
+        而是把结果翻译成营销语言：当前能力是基础价，成长、品牌、注意力是溢价项。
+      </p>
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Implicit Market Premiums</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">Hedonic pricing</span><span class="tag">Revealed WTP</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_11_hedonic_price_premiums.png" alt="Implicit Market Premiums"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Quality, growth, brand and attention signals translate into measurable price premiums.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>The model converts positioning narratives into revealed willingness-to-pay language.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>纵轴是模型中的营销变量，横轴是对 log 价格的影响方向和强度。</li><li>条形向右表示正溢价，向左表示折价或负向影响。</li><li>条形旁边的百分比是便于展示的溢价解释。</li><li>不要把它讲成预测模型；它是“愿意支付什么”的分解图。</li><li>观众应关注 growth、brand、attention 是否都进入价格结构。</li></ul></div>
+          <div class="slide-line">Quality, growth, brand and attention become implicit willingness-to-pay premiums.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Paid Transfer Premium Heatmap</h3>
+          <div class="chart-meta"><span class="tag">Supporting</span><span class="tag">Actual paid transfers</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_12_transfer_premium_heatmap.png" alt="Paid Transfer Premium Heatmap"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Actual paid fees vary across age-role combinations.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>This validates that positioning logic appears in observed buying behavior, not only estimated market value.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>纵轴是年龄段，横轴是角色组。</li><li>颜色越亮代表该年龄×角色组合的实际付费中位数越高。</li><li>数字表示真实转会费的中位数，单位是百万欧元。</li><li>观众应关注高亮格子：它们代表俱乐部真正愿意花钱的组合。</li><li>这张图用于验证，而不是作为主模型。</li></ul></div>
+          <div class="slide-line">Real transfer payments confirm that positioning affects willingness to pay.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="synthesis">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Integrated Conclusion</div>
+        <h2>Transfer fee is price for positioning</h2>
+      </div>
+      <p class="section-lede">
+        The strongest version of the argument combines growth potential and attention value, then reads bubble size
+        as market valuation. Premium players often sit where future narrative and visibility overlap.
+      </p>
+    </div>
+    <div class="big-insight">
+      从数据回到营销判断：高价球员往往不是“单项能力更好”，而是同时拥有更强的成长叙事、品牌背书和注意力价值。
+    </div>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Integrated STP Positioning Map</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">STP synthesis</span><span class="tag">Consulting-style map</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_16_integrated_stp_positioning_map.png" alt="Integrated STP Positioning Map"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Premium players often sit where future potential and attention value overlap.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>This is the clearest synthesis of growth positioning and attention positioning with price as bubble size.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>横轴是 growth score，越右代表未来潜力叙事越强。</li><li>纵轴是 attention score，越上代表娱乐性和传播价值越强。</li><li>气泡越大代表市场价值越高。</li><li>颜色代表不同角色组，帮助区分进攻、均衡、防守和门将。</li><li>观众应关注右上区域：这里同时具备成长和注意力，是最强 positioning zone。</li></ul></div>
+          <div class="slide-line">Premium players combine future potential and attention value.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-top">
+        <div class="chart-title-block">
+          <h3>Marketing Positioning Maps</h3>
+          <div class="chart-meta"><span class="tag priority">Core</span><span class="tag">Growth</span><span class="tag">Brand</span><span class="tag">Attention</span></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-media"><img src="outputs/charts/chart_09_positioning_maps.png" alt="Marketing Positioning Maps"></div>
+        <div class="chart-notes">
+          <div class="note"><h4>Statistical interpretation</h4><p>Growth, brand and attention each show a relationship with price from a different angle.</p></div>
+          <div class="note"><h4>Marketing interpretation</h4><p>This is the integrated STP view: clubs price several positioning dimensions at the same time.</p></div>
+          <div class="chart-guide"><h4>How to read</h4><ul><li>四个子图分别展示潜力、品牌、注意力和年龄密度与价格的关系。</li><li>散点图中纵轴通常是 log 价格，越高代表估值越高。</li><li>品牌图的趋势线显示品牌分数与价格的整体方向。</li><li>密度/hexbin 颜色越亮，代表该区域球员越集中。</li><li>观众应把它看成主结论总览：三类定位共同解释价格。</li></ul></div>
+          <div class="slide-line">Transfer fee is a combined signal of growth, brand and attention positioning.</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="split">
+      <div class="takeaway-card">
+        <h3>The marketing answer</h3>
+        <p>俱乐部通过为成长叙事、联赛品牌背书和注意力型球员身份支付溢价，揭示自己真正重视的市场偏好。</p>
+      </div>
+      <div class="takeaway-card">
+        <h3>The final sentence</h3>
+        <p><strong>俱乐部买的不只是球员能力，而是不确定性中的差异化市场位置。</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="appendix">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">Appendix</div>
+        <h2>Supporting evidence, not the main story</h2>
+      </div>
+      <p class="section-lede">
+        These charts are useful if more detail is needed. The scarcity-premium idea should not be used as a core
+        story because it pulls the project toward auction theory rather than STP-based marketing positioning.
+      </p>
+    </div>
+    <div class="appendix-grid">
+      <div class="appendix-card">
+        <img src="outputs/charts/chart_07_pca_position_league.png" alt="PCA by Position and League">
+        <div><h3>PCA by Position and League</h3><p>读图方式：横纵轴是 PCA 综合属性空间；颜色分别表示位置或联赛组。它说明球员角色是产品类别，联赛是品牌语境。适合做备份证据，不必放入主线。</p></div>
+      </div>
+      <div class="appendix-card">
+        <img src="outputs/charts/chart_17_league_transfer_flow_heatmap.png" alt="League Transfer Flow Heatmap">
+        <div><h3>League Transfer Flow Heatmap</h3><p>读图方式：纵轴是来源联赛，横轴是目的联赛，颜色越亮代表资金流越大。它只用于轻量竞争直觉：资本流向更强品牌市场，不作为 scarcity premium 主线。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>Static HTML presentation draft generated from the football transfer market analytics project.</div>
+    <div style="margin-top:8px;">Main framework: STP + 4P Price. Core premiums: Growth, Brand, Attention.</div>
+  </footer>
+</body>
+</html>

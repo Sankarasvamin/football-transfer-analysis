@@ -1,0 +1,559 @@
+{
+  "project_title": "How Football Clubs Reveal Market Preferences Through Transfer Spending",
+  "core_framework": {
+    "main_model": "STP",
+    "price_role": "Transfer fee as revealed willingness to pay",
+    "positioning_dimensions": [
+      "Growth Positioning",
+      "Brand Positioning",
+      "Attention Positioning"
+    ]
+  },
+  "charts": [
+    {
+      "chart_id": "chart_01",
+      "title": "Data Understanding Dashboard",
+      "chart_type": "multi-panel bar dashboard",
+      "image_path": "outputs/charts/chart_01_data_understanding_dashboard.png",
+      "variables": [
+        "missingness",
+        "role_group",
+        "league_name"
+      ],
+      "main_insight": "The database has enough role, league, ability and price coverage to support STP-based market analysis.",
+      "marketing_interpretation": "This chart establishes the market research foundation: players can be segmented by role, league context and valuation variables.",
+      "framework_tags": [
+        "STP",
+        "Segmentation",
+        "Market Research"
+      ],
+      "recommended_slide": "Method and data credibility",
+      "priority": "supporting",
+      "speaker_note": "Use this briefly to prove that the analysis is not anecdotal; it has enough structured variables for marketing interpretation."
+    },
+    {
+      "chart_id": "chart_02",
+      "title": "Price Skewness: Star-Driven Premium Market",
+      "chart_type": "histogram comparison",
+      "image_path": "outputs/charts/chart_02_price_skewness.png",
+      "variables": [
+        "value_eur",
+        "log_value_eur"
+      ],
+      "main_insight": "Football transfer value is extremely right-skewed, with a small elite segment dominating total market value.",
+      "marketing_interpretation": "The market behaves like a premium star economy where symbolic value, scarcity and attention concentrate price at the top.",
+      "framework_tags": [
+        "Price",
+        "4P",
+        "Premium Pricing"
+      ],
+      "recommended_slide": "Opening: why transfer price is a marketing question",
+      "priority": "core",
+      "speaker_note": "This is the hook: transfer pricing looks like a premium product market, not a normal uniform labor market."
+    },
+    {
+      "chart_id": "chart_03",
+      "title": "Youth / Growth Positioning Map",
+      "chart_type": "bubble scatter with smooth trend",
+      "image_path": "outputs/charts/chart_03_youth_growth_positioning.png",
+      "variables": [
+        "age",
+        "value_million",
+        "potential",
+        "growth_score"
+      ],
+      "main_insight": "Young high-potential players occupy disproportionate high-value zones.",
+      "marketing_interpretation": "Clubs position these players as future-growth assets rather than merely current-performance players.",
+      "framework_tags": [
+        "STP",
+        "Targeting",
+        "Growth Positioning",
+        "Price"
+      ],
+      "recommended_slide": "Growth Positioning: youth and future value",
+      "priority": "core",
+      "speaker_note": "Explain that the club is buying an option on future value, resale value and brand story."
+    },
+    {
+      "chart_id": "chart_04",
+      "title": "League / Brand Positioning: Median Price Ladder",
+      "chart_type": "horizontal bar chart",
+      "image_path": "outputs/charts/chart_04_league_brand_ladder.png",
+      "variables": [
+        "league_name",
+        "median_value",
+        "top_league"
+      ],
+      "main_insight": "Top leagues form a visible market-value ladder.",
+      "marketing_interpretation": "League identity acts like a brand label that signals quality, reduces uncertainty and frames willingness to pay.",
+      "framework_tags": [
+        "STP",
+        "Brand Positioning",
+        "Brand Equity",
+        "Price"
+      ],
+      "recommended_slide": "Brand Positioning: league identity and brand equity",
+      "priority": "core",
+      "speaker_note": "Use this to translate league differences into brand equity rather than only football strength."
+    },
+    {
+      "chart_id": "chart_05",
+      "title": "Entertainment / Attention Positioning Map",
+      "chart_type": "scatter with density contour and trend line",
+      "image_path": "outputs/charts/chart_05_attention_positioning.png",
+      "variables": [
+        "attention_score",
+        "log_value_eur",
+        "overall"
+      ],
+      "main_insight": "Entertainment-oriented player profiles show a positive price gradient.",
+      "marketing_interpretation": "Attacking spectacle, dribbling, speed and reputation turn players into attention-generating assets.",
+      "framework_tags": [
+        "STP",
+        "Attention Positioning",
+        "Promotion",
+        "Price"
+      ],
+      "recommended_slide": "Attention Positioning: entertainment and visibility premium",
+      "priority": "core",
+      "speaker_note": "Connect football highlights to attention economy: the player is both product and promotional asset."
+    },
+    {
+      "chart_id": "chart_06",
+      "title": "PCA Archetype Map: Price Gradient",
+      "chart_type": "PCA scatter",
+      "image_path": "outputs/charts/chart_06_pca_price_gradient.png",
+      "variables": [
+        "technical_attributes",
+        "PC1",
+        "PC2",
+        "log_value_eur"
+      ],
+      "main_insight": "High-value players concentrate in clearer latent archetype regions.",
+      "marketing_interpretation": "The market buys recognizable player archetypes, not isolated individual attributes.",
+      "framework_tags": [
+        "Positioning",
+        "Perceptual Map",
+        "Differentiation"
+      ],
+      "recommended_slide": "Player archetypes and positioning",
+      "priority": "core",
+      "speaker_note": "Frame PCA as a marketing perceptual map: it shows where player-products sit in the market mind."
+    },
+    {
+      "chart_id": "chart_07",
+      "title": "PCA Archetypes by Position and League Brand",
+      "chart_type": "two-panel PCA scatter",
+      "image_path": "outputs/charts/chart_07_pca_position_league.png",
+      "variables": [
+        "PC1",
+        "PC2",
+        "position_category",
+        "top_league_label"
+      ],
+      "main_insight": "Position and league context structure the archetype map.",
+      "marketing_interpretation": "Player role defines product category, while league context adds brand meaning.",
+      "framework_tags": [
+        "STP",
+        "Segmentation",
+        "Brand Positioning"
+      ],
+      "recommended_slide": "Supporting archetype evidence",
+      "priority": "supporting",
+      "speaker_note": "Use if time allows after the PCA price map; it explains why position and league are not just controls."
+    },
+    {
+      "chart_id": "chart_08",
+      "title": "t-SNE Identity Maps",
+      "chart_type": "four-panel t-SNE embedding",
+      "image_path": "outputs/charts/chart_08_tsne_identity_maps.png",
+      "variables": [
+        "player_attributes",
+        "log_value_eur",
+        "age_group",
+        "league_group",
+        "role_group"
+      ],
+      "main_insight": "Player identities cluster into neighborhoods, and price premiums appear in selected neighborhoods.",
+      "marketing_interpretation": "Clubs compare players within identity-based consideration sets, not across the entire market at once.",
+      "framework_tags": [
+        "STP",
+        "Positioning",
+        "Consideration Set",
+        "Differentiated Competition"
+      ],
+      "recommended_slide": "How the market organizes player identities",
+      "priority": "core",
+      "speaker_note": "This is the visual proof that the market has neighborhoods of substitutable but differentiated products."
+    },
+    {
+      "chart_id": "chart_09",
+      "title": "Marketing Positioning Maps",
+      "chart_type": "four-panel positioning map",
+      "image_path": "outputs/charts/chart_09_positioning_maps.png",
+      "variables": [
+        "potential",
+        "brand_score",
+        "attention_score",
+        "age",
+        "log_value_eur"
+      ],
+      "main_insight": "Growth, brand and attention each show a relationship with price from different angles.",
+      "marketing_interpretation": "This is the integrated STP view: clubs price multiple positioning dimensions simultaneously.",
+      "framework_tags": [
+        "STP",
+        "Positioning",
+        "Price",
+        "Growth Positioning",
+        "Brand Positioning",
+        "Attention Positioning"
+      ],
+      "recommended_slide": "Integrated positioning summary",
+      "priority": "core",
+      "speaker_note": "Use this as the strategic summary chart before moving to segmentation and price model."
+    },
+    {
+      "chart_id": "chart_10",
+      "title": "Segmentation: Market Segments and Segment DNA",
+      "chart_type": "bar chart plus heatmap",
+      "image_path": "outputs/charts/chart_10_segmentation_market_segments.png",
+      "variables": [
+        "market_segment",
+        "median_value",
+        "age",
+        "overall",
+        "potential",
+        "attention",
+        "growth"
+      ],
+      "main_insight": "Player profiles can be grouped into meaningful market segments with different price logic.",
+      "marketing_interpretation": "This operationalizes STP segmentation by naming player groups as market categories rather than just football roles.",
+      "framework_tags": [
+        "STP",
+        "Segmentation",
+        "Targeting"
+      ],
+      "recommended_slide": "Market segments",
+      "priority": "core",
+      "speaker_note": "Translate each segment into a value proposition: growth asset, creative connector, utility value."
+    },
+    {
+      "chart_id": "chart_11",
+      "title": "Implicit Market Premiums",
+      "chart_type": "coefficient bar chart",
+      "image_path": "outputs/charts/chart_11_hedonic_price_premiums.png",
+      "variables": [
+        "age",
+        "overall",
+        "potential_gap",
+        "attention_score",
+        "club_brand_score",
+        "top_league"
+      ],
+      "main_insight": "Quality, growth, brand and attention signals translate into measurable price premiums.",
+      "marketing_interpretation": "The model converts positioning narratives into revealed willingness-to-pay language.",
+      "framework_tags": [
+        "Price",
+        "4P",
+        "Growth Premium",
+        "Brand Premium",
+        "Attention Premium"
+      ],
+      "recommended_slide": "Transfer fee as revealed willingness to pay",
+      "priority": "core",
+      "speaker_note": "Do not present this as prediction accuracy; present it as a premium decomposition."
+    },
+    {
+      "chart_id": "chart_12",
+      "title": "Paid Transfer Premium Heatmap",
+      "chart_type": "heatmap",
+      "image_path": "outputs/charts/chart_12_transfer_premium_heatmap.png",
+      "variables": [
+        "transfer_age_group",
+        "role_group",
+        "paid_transfer_fee"
+      ],
+      "main_insight": "Actual paid fees vary across age-role combinations.",
+      "marketing_interpretation": "This validates that positioning logic appears in observed buying behavior, not only estimated market value.",
+      "framework_tags": [
+        "Price",
+        "Revealed Preference",
+        "Growth Positioning",
+        "Attention Positioning"
+      ],
+      "recommended_slide": "Validation using real transactions",
+      "priority": "supporting",
+      "speaker_note": "Use near the end to show that the argument is grounded in actual paid transfer fees."
+    },
+    {
+      "chart_id": "chart_13",
+      "title": "Growth Positioning by Age Segment",
+      "chart_type": "violin plus box plot",
+      "image_path": "outputs/charts/chart_13_age_group_log_fee_violin.png",
+      "variables": [
+        "age_group",
+        "log_value_eur"
+      ],
+      "main_insight": "Age lifecycle segments have different price distributions and upside ceilings.",
+      "marketing_interpretation": "This clarifies youth as a lifecycle positioning variable rather than a simple age effect.",
+      "framework_tags": [
+        "STP",
+        "Growth Positioning",
+        "Product Lifecycle"
+      ],
+      "recommended_slide": "Growth Positioning detail",
+      "priority": "supporting",
+      "speaker_note": "Use this if the audience needs a clearer distribution view after the bubble map."
+    },
+    {
+      "chart_id": "chart_14",
+      "title": "Brand Positioning: League × Role Price Surface",
+      "chart_type": "heatmap",
+      "image_path": "outputs/charts/chart_14_league_role_fee_heatmap.png",
+      "variables": [
+        "league_name",
+        "role_group",
+        "median_value_million"
+      ],
+      "main_insight": "League brand and player role jointly shape median valuation.",
+      "marketing_interpretation": "Brand premium is not uniform; it interacts with player product category.",
+      "framework_tags": [
+        "STP",
+        "Brand Positioning",
+        "Segmentation"
+      ],
+      "recommended_slide": "Brand Positioning detail",
+      "priority": "supporting",
+      "speaker_note": "Use as a stronger version of league-brand interpretation when discussing role differences."
+    },
+    {
+      "chart_id": "chart_15",
+      "title": "Segment Archetype Radar",
+      "chart_type": "radar chart",
+      "image_path": "outputs/charts/chart_15_segment_archetype_radar.png",
+      "variables": [
+        "market_segment",
+        "overall",
+        "potential",
+        "attention",
+        "growth",
+        "top_league_share"
+      ],
+      "main_insight": "Market segments differ by value proposition, not only by price.",
+      "marketing_interpretation": "Each segment sells a different bundle of benefits: quality, upside, attention or brand access.",
+      "framework_tags": [
+        "STP",
+        "Segmentation",
+        "Positioning"
+      ],
+      "recommended_slide": "Segment value propositions",
+      "priority": "supporting",
+      "speaker_note": "This chart helps convert clustering into marketing language."
+    },
+    {
+      "chart_id": "chart_16",
+      "title": "Integrated STP Positioning Map",
+      "chart_type": "bubble scatter",
+      "image_path": "outputs/charts/chart_16_integrated_stp_positioning_map.png",
+      "variables": [
+        "growth_score",
+        "attention_score",
+        "value_million",
+        "role_group"
+      ],
+      "main_insight": "Premium players often sit where future potential and attention value overlap.",
+      "marketing_interpretation": "This is the clearest consulting-style map of growth positioning versus attention positioning.",
+      "framework_tags": [
+        "STP",
+        "Growth Positioning",
+        "Attention Positioning",
+        "Price"
+      ],
+      "recommended_slide": "Integrated STP map",
+      "priority": "core",
+      "speaker_note": "Use this as a final visual synthesis before the conclusion."
+    },
+    {
+      "chart_id": "chart_17",
+      "title": "League Transfer Flow Heatmap",
+      "chart_type": "flow heatmap",
+      "image_path": "outputs/charts/chart_17_league_transfer_flow_heatmap.png",
+      "variables": [
+        "origin_league",
+        "destination_league",
+        "total_paid_fee"
+      ],
+      "main_insight": "Transfer capital flows toward stronger league brands and high-demand markets.",
+      "marketing_interpretation": "This provides light differentiated-competition intuition without making scarcity the core story.",
+      "framework_tags": [
+        "Brand Positioning",
+        "Differentiated Competition",
+        "Price"
+      ],
+      "recommended_slide": "Light competition intuition",
+      "priority": "appendix",
+      "speaker_note": "Keep this as optional support; avoid turning the project into auction theory."
+    },
+    {
+      "chart_id": "chart_18",
+      "title": "Premium Overlap: Super-Premium Player Identities",
+      "chart_type": "bar chart plus bubble positioning map",
+      "image_path": "outputs/charts/chart_18_premium_overlap_identity.png",
+      "variables": [
+        "growth_premium",
+        "brand_premium",
+        "attention_premium",
+        "growth_score",
+        "attention_score",
+        "value_million"
+      ],
+      "main_insight": "Growth, brand and attention premiums often stack on the same player identities, creating super-premium profiles.",
+      "marketing_interpretation": "The market does not reward isolated signals equally; it disproportionately rewards players who combine future narrative, elite-league brand assurance and visibility value.",
+      "framework_tags": [
+        "STP",
+        "Positioning",
+        "Price",
+        "Growth Premium",
+        "Brand Premium",
+        "Attention Premium"
+      ],
+      "recommended_slide": "Integrated discovery: premium overlap",
+      "priority": "core",
+      "speaker_note": "Use this as the narrative turning point: the three premiums are not separate stories; they converge on the same marketable player identities."
+    }
+  ],
+  "presentation_outline": [
+    {
+      "slide_title": "Why transfer price is a marketing question",
+      "objective": "Open with price as revealed preference.",
+      "chart_to_use": [
+        "chart_02"
+      ],
+      "marketing_framework": "4P Price",
+      "key_message": "Transfer fees reveal what clubs value.",
+      "speaker_note": "Start from the skewed market to show that this is a premium positioning market."
+    },
+    {
+      "slide_title": "Course framework mapping: 5C to STP to Price",
+      "objective": "Anchor the project in marketing models.",
+      "chart_to_use": [
+        "chart_01"
+      ],
+      "marketing_framework": "5C + STP + 4P",
+      "key_message": "Players, clubs and leagues form a structured market system.",
+      "speaker_note": "Keep this concise; the main model is STP."
+    },
+    {
+      "slide_title": "Growth Positioning",
+      "objective": "Show youth and potential as future-value positioning.",
+      "chart_to_use": [
+        "chart_03",
+        "chart_13"
+      ],
+      "marketing_framework": "STP + Product Lifecycle",
+      "key_message": "The market prices future narratives, not just current performance.",
+      "speaker_note": "Use chart_03 as the main visual; chart_13 is backup detail."
+    },
+    {
+      "slide_title": "Brand Positioning",
+      "objective": "Show league identity as brand equity.",
+      "chart_to_use": [
+        "chart_04",
+        "chart_14"
+      ],
+      "marketing_framework": "Brand Equity + STP Positioning",
+      "key_message": "League identity functions like a quality label.",
+      "speaker_note": "Translate league effects into brand and risk-reduction language."
+    },
+    {
+      "slide_title": "Attention Positioning",
+      "objective": "Show entertainment value as marketable attention.",
+      "chart_to_use": [
+        "chart_05"
+      ],
+      "marketing_framework": "Attention Economy + 4P Promotion",
+      "key_message": "Entertainment-oriented players receive attention premiums.",
+      "speaker_note": "Explain that attacking stars are both on-field products and media assets."
+    },
+    {
+      "slide_title": "Player archetypes and identity neighborhoods",
+      "objective": "Move beyond descriptive stats into multivariate identity.",
+      "chart_to_use": [
+        "chart_06",
+        "chart_08"
+      ],
+      "marketing_framework": "Perceptual Map + Consideration Set",
+      "key_message": "The market prices recognizable player identities.",
+      "speaker_note": "Use PCA first, then t-SNE if time allows."
+    },
+    {
+      "slide_title": "Segmentation and targeting",
+      "objective": "Name player groups as market segments.",
+      "chart_to_use": [
+        "chart_10",
+        "chart_15"
+      ],
+      "marketing_framework": "STP Segmentation and Targeting",
+      "key_message": "Different player segments sell different value propositions.",
+      "speaker_note": "Connect clusters to club strategy and budget constraints."
+    },
+    {
+      "slide_title": "Price premium decomposition",
+      "objective": "Connect the narrative to revealed willingness to pay.",
+      "chart_to_use": [
+        "chart_11"
+      ],
+      "marketing_framework": "4P Price + Hedonic Pricing",
+      "key_message": "Quality, growth, brand and attention become implicit premiums.",
+      "speaker_note": "Avoid formal econometrics; focus on premium interpretation."
+    },
+    {
+      "slide_title": "Integrated discovery: premium overlap",
+      "objective": "Show that youth, brand and attention premiums stack on the same player identities.",
+      "chart_to_use": [
+        "chart_18"
+      ],
+      "marketing_framework": "STP Positioning + 4P Price",
+      "key_message": "Modern football markets create super-premium player identities by stacking future narrative, brand assurance and visibility value.",
+      "speaker_note": "This is the key turning point from separate evidence to unified conclusion."
+    },
+    {
+      "slide_title": "Integrated STP map",
+      "objective": "Provide one consulting-style summary visual.",
+      "chart_to_use": [
+        "chart_16"
+      ],
+      "marketing_framework": "STP Positioning",
+      "key_message": "Premium players combine future potential and attention value.",
+      "speaker_note": "This is the strongest final visual before conclusion."
+    },
+    {
+      "slide_title": "Validation and light competition intuition",
+      "objective": "Use actual transactions and flows as support.",
+      "chart_to_use": [
+        "chart_12",
+        "chart_17"
+      ],
+      "marketing_framework": "Revealed Preference + Differentiated Competition",
+      "key_message": "Actual payments and capital flows support the positioning story.",
+      "speaker_note": "Keep this secondary. Do not center scarcity premium."
+    },
+    {
+      "slide_title": "Conclusion",
+      "objective": "Close the argument.",
+      "chart_to_use": [
+        "chart_09"
+      ],
+      "marketing_framework": "STP + 4P Price",
+      "key_message": "Transfer fee is the price of positioning under uncertainty.",
+      "speaker_note": "End with growth, brand and attention as the three premiums."
+    }
+  ],
+  "excluded_from_main_story": [
+    {
+      "chart_id": "prior_chart_12_scarcity_premium",
+      "reason": "Scarcity premium is useful only as light differentiated-competition intuition. It should not be a core insight because it shifts the project toward economics / auction theory rather than STP-based marketing positioning.",
+      "recommended_action": "move_to_appendix_or_exclude_from_main_story"
+    }
+  ]
+}
